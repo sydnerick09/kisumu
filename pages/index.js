@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import styles from "dule.css";
+import "../styles/globals.css";
 
 const tasks = [
   { icon: "✦", label: "Text Annotation & Labeling" },
