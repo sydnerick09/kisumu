@@ -1,69 +1,27 @@
 import { useRouter } from "next/router";
-import "../styles/globals.css";
-
-const tasks = [
-  { icon: "✦", label: "Text Annotation & Labeling" },
-  { icon: "✦", label: "Sentence Arrangement" },
-  { icon: "✦", label: "Content Classification" },
-  { icon: "✦", label: "Data Categorization" },
-  { icon: "✦", label: "Pattern Recognition" },
-];
 
 export default function Home() {
   const router = useRouter();
 
   return (
-    <div className={styles.page}>
-      <div className={styles.background}>
-        <div className={styles.orb1} />
-        <div className={styles.orb2} />
-        <div className={styles.grid} />
-      </div>
+    <div className="container">
+      <h1>Welcome to AI Task Platform</h1>
 
-      <main className={styles.container}>
-        <div className={styles.badge}>AI-Powered Task Platform</div>
+      <p>
+        Earn by completing:
+        <br />
+        • Text annotation & labeling <br />
+        • Sentence arrangement <br />
+        • Content classification <br />
+        • Data categorization <br />
+        • Pattern recognition
+      </p>
 
-        <h1 className={styles.heading}>
-          Complete Tasks.
-          <br />
-          <span className={styles.accent}>Earn Rewards.</span>
-        </h1>
+      <button onClick={() => router.push("/signup")}>
+        Create Account
+      </button>
 
-        <p className={styles.subheading}>
-          Join thousands of contributors shaping the future of AI by completing
-          simple, high-value data tasks from anywhere.
-        </p>
-
-        <ul className={styles.taskList}>
-          {tasks.map((task) => (
-            <li key={task.label} className={styles.taskItem}>
-              <span className={styles.taskIcon}>{task.icon}</span>
-              {task.label}
-            </li>
-          ))}
-        </ul>
-
-        <div className={styles.actions}>
-          <button
-            className={styles.primaryBtn}
-            onClick={() => router.push("/signup")}
-          >
-            Create Free Account
-            <span className={styles.arrow}>→</span>
-          </button>
-
-          <button
-            className={styles.secondaryBtn}
-            onClick={() => router.push("/login")}
-          >
-            Sign In
-          </button>
-        </div>
-
-        <p className={styles.footer}>
-          Trusted by 10,000+ contributors &nbsp;·&nbsp; © 2026 AI Task Platform
-        </p>
-      </main>
+      <p>Already have an account ©2026</p>
     </div>
   );
 }
