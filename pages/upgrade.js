@@ -6,15 +6,23 @@ export default function Upgrade() {
 
   const pay = async (amount) => {
     try {
-      const res = await axios.post("/api/pay", { amount });
+      const res = await axios.post("/api/pay", {
+        amount,
+        email: "user@email.com" // ⚠️ REQUIRED for Paystack
+      });
 
-      if (res.data.url) {
-        window.location.href = res.data.url;
+      // ✅ Correct response handling
+      const paymentUrl = res.data?.data?.authorization_url;
+
+      if (paymentUrl) {
+        window.location.href = paymentUrl;
       } else {
+        console.log(res.data);
         alert("Payment link not received");
       }
+
     } catch (err) {
-      console.log(err);
+      console.error(err.response?.data || err.message);
       alert("Payment failed");
     }
   };
