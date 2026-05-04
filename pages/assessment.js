@@ -15,7 +15,8 @@ export default function Assessment() {
         • Pattern recognition
       </p>
 
-      <button onClick={() => router.push("/dashboard")}>
+      {/* ✅ FIX: Start from first step */}
+      <button onClick={() => router.push("/sentence")}>
         Start Assessment
       </button>
     </div>

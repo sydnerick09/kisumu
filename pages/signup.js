@@ -32,11 +32,30 @@ export default function Signup() {
       <input placeholder="Phone" onChange={e => setForm({...form,phone:e.target.value})} />
       <input placeholder="Email" onChange={e => setForm({...form,email:e.target.value})} />
 
-      <select onChange={e => setForm({...form,country:e.target.value})}>
-        <option>Kenya</option>
-        <option>Uganda</option>
-        <option>Tanzania</option>
-      </select>
+    <select onChange={e => setForm({ ...form, country: e.target.value })}>
+  <option value="">Select Country</option>
+  <option>Kenya</option>
+  <option>Uganda</option>
+  <option>Tanzania</option>
+  <option>Rwanda</option>
+  <option>Burundi</option>
+  <option>South Sudan</option>
+  <option>Ethiopia</option>
+  <option>Somalia</option>
+  <option>Nigeria</option>
+  <option>Ghana</option>
+  <option>South Africa</option>
+  <option>Egypt</option>
+  <option>Morocco</option>
+  <option>Algeria</option>
+  <option>Tunisia</option>
+  <option>Zimbabwe</option>
+  <option>Zambia</option>
+  <option>Malawi</option>
+  <option>Namibia</option>
+  <option>Botswana</option>
+  <option>Cameroon</option>
+</select>
 
       <input type="password" placeholder="Password" onChange={e => setForm({...form,password:e.target.value})}/>
       <input type="password" placeholder="Confirm Password" onChange={e => setForm({...form,confirm:e.target.value})}/>

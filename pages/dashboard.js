@@ -1,19 +1,49 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { getBalance } from "../utils/balance";
 
 export default function Dashboard() {
   const router = useRouter();
 
   const [withdrawals, setWithdrawals] = useState([]);
   const [popup, setPopup] = useState(null);
+  const [balance, setBalance] = useState(0);
+
+  // ✅ Load real balance
+  useEffect(() => {
+    setBalance(getBalance());
+  }, []);
 
   const users = [
     { name: "James Mwangi", flag: "🇰🇪" },
+    { name: "Faith Wanjiku", flag: "🇰🇪" },
+    { name: "Peter Otieno", flag: "🇰🇪" },
+    { name: "Mary Akinyi", flag: "🇰🇪" },
+    { name: "John Kiptoo", flag: "🇰🇪" },
+    { name: "David Ochieng", flag: "🇰🇪" },
+    { name: "Samuel Mutua", flag: "🇰🇪" },
+    { name: "Grace Njeri", flag: "🇰🇪" },
+    { name: "Daniel Kimani", flag: "🇰🇪" },
+    { name: "Esther Wambui", flag: "🇰🇪" },
+    { name: "Paul Kiplagat", flag: "🇰🇪" },
+
+    { name: "Kevin Kiprono", flag: "🇰🇪" },
+    { name: "Dorcas Nasimiyu", flag: "🇰🇪" },
+    { name: "Brian Muriuki", flag: "🇰🇪" },
+    { name: "Agnes Wekesa", flag: "🇰🇪" },
+    { name: "Victor Musyoka", flag: "🇰🇪" },
+    { name: "Purity Jelagat", flag: "🇰🇪" },
+    { name: "Dennis Omondi", flag: "🇰🇪" },
+    { name: "Hannah Moraa", flag: "🇰🇪" },
+    { name: "Eric Kipkemboi", flag: "🇰🇪" },
+    { name: "Lilian Nyongesa", flag: "🇰🇪" },
+
     { name: "Aisha Bello", flag: "🇳🇬" },
     { name: "Kwame Mensah", flag: "🇬🇭" },
-    { name: "Faith Wanjiku", flag: "🇰🇪" },
-    { name: "Chinedu Okafor", flag: "🇳🇬" },
-    { name: "Ama Serwaa", flag: "🇬🇭" }
+    { name: "Jean Baptiste", flag: "🇷🇼" },
+    { name: "Ali Hassan", flag: "🇹🇿" },
+    { name: "Abebe Bekele", flag: "🇪🇹" },
+    { name: "John Smith", flag: "🇺🇸" }
   ];
 
   const timeAgo = (seconds) => {
@@ -40,9 +70,7 @@ export default function Dashboard() {
         ...prev.map(w => ({ ...w, time: w.time + 3 })).slice(0, 5)
       ]);
 
-      // Show M-Pesa style popup
       setPopup(newW.text);
-
       setTimeout(() => setPopup(null), 3000);
     }, 3000);
 
@@ -58,8 +86,9 @@ export default function Dashboard() {
     <div className="container">
       <h2>Welcome Back</h2>
 
+      {/* ✅ Dynamic Balance */}
       <div className="card">
-        Balance: $10
+        Balance: ${balance}
       </div>
 
       <button onClick={() => router.push("/upgrade")}>
