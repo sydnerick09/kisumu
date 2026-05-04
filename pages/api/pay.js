@@ -3,21 +3,30 @@ import axios from "axios";
 export default async function handler(req, res) {
   const { amount } = req.body;
 
-  const response = await axios.post(
-    "https://api.paystack.co/transaction/initialize",
-    {
-      email: "customer@email.com",
-      amount: amount * 100,
-      currency: "KES"
-    },
-    {
-      headers: {
-        Authorization: `Bearer ${process.env.PAYSTACK_SECRET}`
+  try {
+    const response = await axios.post(
+      "https://api.paystack.co/transaction/initialize",
+      {
+        email: "testuser@email.com",
+        amount: amount * 100,
+        currency: "KES",
+        callback_url: process.env.NEXT_PUBLIC_BASE_URL
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.PAYSTACK_SECRET}`,
+          "Content-Type": "application/json"
+        }
       }
-    }
-  );
+    );
 
-  res.status(200).json({
-    url: response.data.data.authorization_url
-  });
+    const url = response.data.data.authorization_url;
+
+    return res.status(200).json({ url });
+
+  } catch (error) {
+    return res.status(500).json({
+      error: error.response?.data || error.message
+    });
+  }
 }
